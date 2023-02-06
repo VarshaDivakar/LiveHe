@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, Image, FlatList, Pressable } from 'react-native';
+import React,{useEffect} from "react";
+import { View, Text, Image, FlatList, Pressable,BackHandler } from 'react-native';
 import Dashboard from "../component/DashBoard";
 import { styles } from "../styles";
 import { WinningProduct } from "../Dummy";
@@ -8,6 +8,14 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useNavigation } from "@react-navigation/native";
 export default function WinningProducts() {
     const navigation = useNavigation();
+    // useEffect(()=>{
+    //     BackHandler.addEventListener(
+    //         'hardwareBackPress',
+    //        ()=> {navigation.goBack();
+    //         return true;
+    //     },
+    //       );
+    //   },[])
     const _renderProduct = ({ item }) => {
         console.log('image==>', item.product);
         return (
@@ -17,11 +25,13 @@ export default function WinningProducts() {
                 justifyContent: 'space-between',
                 marginHorizontal: 6,
                 marginBottom: 18,
+                height: 'auto',
+                paddingTop:14
                 // backgroundColor:'green'
             }}>
                 <View style={{
-                    width: width / 13,
-                    height: width / 13,
+                    width: width / 11,
+                    height: width / 11,
                     borderColor: COLORS.primary,
                     borderWidth: 1,
                     borderRadius: 20,
@@ -31,7 +41,7 @@ export default function WinningProducts() {
                     backgroundColor: 'white',
                     position: 'absolute',
                     // left: width / 6.5,
-                    top: -10,
+                    top: -0,
                     zIndex: 1
                 }}>
                     <Image style={{
@@ -90,7 +100,7 @@ export default function WinningProducts() {
                 <Text style={{
                     fontSize: 16,
                     color: '#636363',
-                    marginVertical: 15,
+                    marginVertical: 10,
                 }}>
                     Winnings
                 </Text>
@@ -98,7 +108,7 @@ export default function WinningProducts() {
                     numColumns={2}
                     renderItem={_renderProduct}
                     contentContainerStyle={{
-                        marginTop: 10,
+                        marginTop: 20,
                         justifyContent: 'space-evenly',
                     }}
                 />

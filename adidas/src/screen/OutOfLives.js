@@ -1,19 +1,28 @@
-import React from "react";
-import { View, Text, StyleSheet } from 'react-native';
+import React,{useEffect} from "react";
+import { View, Text, StyleSheet, Pressable,BackHandler } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import Dashboard from "../component/DashBoard";
 import { COLORS, commonFontStyle, width } from "../constant/theme";
 import { styles } from "../styles";
 import GradientBox from "../component/GradientBox";
+import { useNavigation } from "@react-navigation/native";
 export default function OutOfLives() {
+    const navigation = useNavigation();
+    // useEffect(()=>{
+    //     BackHandler.addEventListener(
+    //         'hardwareBackPress',
+    //        ()=> navigation.goBack(),
+    //       );
+    //   },[])
     return (
-        <Dashboard>
-            <View style={[styles.pasteCardcontainer, {
+        <Dashboard number={5}>
+            <View  style={[styles.pasteCardcontainer, {
                 height: '78%',
                 width: '90%',
                 alignItems: 'center',
                 paddingVertical: 50,
+                // backgroundColor:'rgba(255, 255, 255, 0.7)',
                 //   backgroundColor:'yellow'
             }]}>
                 <Text style={{
@@ -24,10 +33,12 @@ export default function OutOfLives() {
                     marginTop:30,
                     marginBottom:20
                 }}>Reload options</Text>
+                <Pressable onPress={()=> navigation.navigate('Proceed')}>
                 <GradientBox 
                 leftValue={5} 
                 rightValue={15} 
                 containerStyle={style.gradientStyle}/>
+                </Pressable>
                 <GradientBox 
                 leftValue={15} 
                 rightValue={50}

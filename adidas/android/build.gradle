@@ -2,6 +2,11 @@
 
 buildscript {
     ext {
+
+         googlePlayServicesVersion = "16.0.0"
+         androidMapsUtilsVersion = "0.5+"
+
+
         buildToolsVersion = "33.0.0"
         minSdkVersion = 21
         compileSdkVersion = 33
@@ -15,6 +20,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        // implementation project(':react-native-maps')  
         classpath("com.android.tools.build:gradle:7.3.1")
         classpath("com.facebook.react:react-native-gradle-plugin")
     }

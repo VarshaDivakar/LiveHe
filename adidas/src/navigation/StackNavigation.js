@@ -11,6 +11,14 @@ import CardDetail from "../screen/CardDetail";
 import PaymentMethod from "../screen/PaymentMethod";
 import Setting from "../screen/Setting";
 import Account from "../screen/Account";
+import StoreDetail from "../screen/StoreDetail";
+import Congrat from "../screen/Congrat";
+import Filter from "../screen/Filter";
+import SecondPaymentMethod from "../screen/SecondPaymentMethod";
+import Adidases from "../screen/Adidases";
+import Proceed from "../screen/Proceed";
+import OTP from "../screen/Auth/OTP";
+import Map from "../component/Map";
 
 const stack = createNativeStackNavigator();
 
@@ -30,6 +38,15 @@ export default function StackNavigation(){
             <stack.Screen name="PaymentMethod" component={PaymentMethod}/>
             <stack.Screen name="Setting" component={Setting}/>
             <stack.Screen name="Account" component={Account}/>
+            <stack.Screen name="StoreDetail" component={StoreDetail}/>
+            <stack.Screen name="Congrat" component={Congrat}/>
+            <stack.Screen name="Filter" component={Filter}/>
+            <stack.Screen name="SecondPaymentMethod" component={SecondPaymentMethod}/>
+            <stack.Screen name="Adidases" component={Adidases}/>
+            <stack.Screen name="Proceed" component={Proceed}/>
+            <stack.Screen name="OTP" component={OTP}/>
+            <stack.Screen name="Map" component={Map}/>
+
         </stack.Navigator>
     )
 }

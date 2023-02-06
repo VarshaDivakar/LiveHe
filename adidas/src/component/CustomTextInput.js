@@ -1,6 +1,6 @@
 import React from "react";
 import {View,Text,TextInput,StyleSheet, TouchableOpacity} from 'react-native';
-import { COLORS } from "../constant/theme";
+import { COLORS, commonFontStyle } from "../constant/theme";
 
  export default function CustomTextInput({
     title,
@@ -17,7 +17,7 @@ import { COLORS } from "../constant/theme";
 }){
 return(
     <View style={[{
-        width:'90%',
+        width:'80%',
         marginTop:50
     },containerStyle]}>
     <Text style={{...style.bold,...lableStyle}}>{title}</Text>
@@ -27,17 +27,16 @@ return(
             borderBottomWidth:1,
             borderBottomColor:COLORS.primary,
             width:'95%',
-            marginLeft:15,
+            marginLeft:8,
            ...inputViewStyle
         }}>
             {leftIcon && leftIcon}
         <TextInput
         style={{
-            // borderBottomWidth:1,
-            // borderBottomColor:COLORS.primary,
-            height:42,
-            // marginLeft:15,
+            height:35,
+            fontWeight:'600',
             width:'90%',
+            // ...commonFontStyle(14,400,COLORS.black2),
             ...inputStyle
         }}
         secureTextEntry={isSecureEntry}
@@ -45,44 +44,16 @@ return(
         onChangeText={(text) => setValue(text)}
         />
         {rightIcon&&rightIcon}
-         {/* <TouchableOpacity onPress={()=>onIconPress()}>
-        {isSecureEntry?
-        <Icon name='eye-off-sharp' size={30} color={'#7C7C7C'}/> :
-        <Icon name='eye' size={30} color={'#7C7C7C'}/>
-        }
-        </TouchableOpacity> */}
-        {/* </View> :
- <TextInput
- style={{
-     borderBottomWidth:1,
-     borderBottomColor:COLORS.primary,
-     height:42,
-     marginLeft:15,
-     ...inputStyle
- }}
- secureTextEntry={isSecureEntry}
- placeholder={placeholder}
- onChangeText={(text) => setValue(text)}
- />
-        } */}
-       
-       
     </View>
     </View>
 )
 }
 
 const style = StyleSheet.create({
-    // extraBold:{
-    //     fontSize:35,
-    //     fontWeight:'bold',
-    //     lineHeight:35,
-    //     color:'#424242'
-    // },
+
    bold:{
-    fontSize:18,
-        fontWeight:'bold',
+...commonFontStyle(18,'bold',COLORS.black2),
         lineHeight:18,
-        color:'#444444'
+        marginBottom:10
    }
 })

@@ -1,16 +1,18 @@
-import React, { useState } from "react";
-import {View,Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import React, { useEffect, useState } from "react";
+import {View,Text, StyleSheet, TextInput, TouchableOpacity, Image, ImageBackground, BackHandler, Alert} from 'react-native';
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import Auth from ".";
 import CustomButton from "../../component/CustomButton";
 import CustomTextInput from "../../component/CustomTextInput";
-import { COLORS, width } from "../../constant/theme";
+import { COLORS, commonFontStyle, width } from "../../constant/theme";
 import { emailValidation,alphaStringValidation,passwordValidation } from "../../utils/Validation";
 import CloseEye from "../../assets/icon/CloseEye.svg";
 import OpenEye from "../../assets/icon/OpenEye.svg";
 import Icon from 'react-native-vector-icons/Ionicons'
-
+import { useNavigation,useRoute } from "@react-navigation/native";
 export default function Login(props){
+    const navigation = useNavigation();
+    const route = useRoute();
     const [userName,setUserName] =useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
@@ -18,13 +20,15 @@ export default function Login(props){
     const onSignUpPress = () =>{
         props.navigation.navigate('SignUp');
     }
+
     const oneyesPress = ()=>{
         setIsSecureEntry(!isSecureEntry);
     }
+
     const onLoginPress =()=>{
-        if(!alphaStringValidation(userName))
-        alert('Please Enter valid UserName')
-        else if(!emailValidation(email))
+        // if(!alphaStringValidation(userName))
+        // alert('Please Enter valid UserName')
+         if(!emailValidation(email))
         alert('Please enter email')
         else if(!passwordValidation(password))
         alert('Please enter password')
@@ -32,12 +36,13 @@ export default function Login(props){
         // alert('Successfully Sign In');
         props.navigation.navigate('Home');
       }
+      
 return(
     <Auth>
         <Text style={style.extraBold}>Log In</Text>
-        <CustomTextInput title='Usename' 
+        {/* <CustomTextInput title='Usename' 
         setValue={setUserName}
-        placeholder='UserName'/>
+        placeholder='UserName'/> */}
          <CustomTextInput title='Email' 
          setValue={setEmail}
         placeholder='Email'/>
@@ -47,7 +52,7 @@ return(
          rightIcon={
                <TouchableOpacity onPress={()=>oneyesPress()}>
         {isSecureEntry?
-        <Icon name='eye-off-sharp' size={30} color={'#7C7C7C'}/> :
+        <Icon name='eye-off-sharp' size={25} color={'#7C7C7C'}/> :
         <Icon name='eye' size={30} color={'#7C7C7C'}/>
         }
         </TouchableOpacity> 
@@ -57,18 +62,17 @@ return(
        onPress={onLoginPress}/>
         <View style={{
             flexDirection:'row',
-            marginTop:25
+            marginTop:20
         }}>
             <Text style={{
-                color:COLORS.textColor,
-                fontSize: 18
+                ...commonFontStyle(18,200,COLORS.gray2)
             }}>Don't have an account? </Text>
             <TouchableOpacity onPress={onSignUpPress}>
+                {/* <ImageBackground source={require('../../assets/images/buttonBg.png')}> */}
             <Text style={{
-                color:COLORS.textColor,
-                fontSize: 18,
-                color:COLORS.primary
+                 ...commonFontStyle(18,300,COLORS.primary)
             }}>Sign Up</Text>
+            {/* </ImageBackground> */}
             </TouchableOpacity>
            
         </View>

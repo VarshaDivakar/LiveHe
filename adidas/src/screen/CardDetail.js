@@ -1,17 +1,30 @@
-import React, { useState } from "react";
-import { View, Text, Image, TextInputComponent } from 'react-native';
+import React, { useState,useEffect } from "react";
+import { View, Text, Image, TextInputComponent,BackHandler } from 'react-native';
 import CustomButton from "../component/CustomButton";
 import CustomTextInput from "../component/CustomTextInput";
 import Dashboard from "../component/DashBoard";
 import GradientBox from "../component/GradientBox";
 import { COLORS } from "../constant/theme";
 import { styles } from "../styles";
-
+import { useNavigation } from "@react-navigation/native";
 export default function CardDetail() {
+    const navigation = useNavigation();
     const [cardNum, setCardNum] = useState('');
     const [cardHolder, setCardHolder] = useState('');
     const [expiryDate, setExpiryDate] = useState('');
     const [cvv, setCvv] = useState('');
+
+    // useEffect(()=>{
+    //     BackHandler.addEventListener(
+    //         'hardwareBackPress',
+    //        ()=> {navigation.goBack();
+    //         return true;
+    //     },
+    //       );
+    //   },[])
+    const onProceedPress = ()=>{
+        
+    }
     return (
         <Dashboard>
             <View style={[styles.pasteCardcontainer, {
@@ -70,7 +83,7 @@ export default function CardDetail() {
                 />
                 </View>
                
-               <CustomButton title={'Proceed'}/>
+               <CustomButton onPress={onProceedPress} title={'Proceed'}/>
             </View>
 
         </Dashboard>

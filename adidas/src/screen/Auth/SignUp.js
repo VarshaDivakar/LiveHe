@@ -1,17 +1,26 @@
-import React, { useState } from "react";
-import {View,Text, StyleSheet, TextInput, TouchableOpacity, Alert, ScrollView} from 'react-native';
+import React, { useState,useEffect } from "react";
+import {View,Text, StyleSheet, TextInput, TouchableOpacity, Alert, ScrollView,BackHandler} from 'react-native';
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import Auth from ".";
 import CustomButton from "../../component/CustomButton";
 import CustomTextInput from "../../component/CustomTextInput";
-import { COLORS, width } from "../../constant/theme";
+import { COLORS, commonFontStyle, width } from "../../constant/theme";
 import { alphaStringValidation, contactNumVadation, emailValidation, passwordValidation } from "../../utils/Validation";
 import CloseEye from "../../assets/icon/CloseEye.svg";
 import OpenEye from "../../assets/icon/OpenEye.svg";
 import Icon from 'react-native-vector-icons/Ionicons'
-
+import OTPModal from "../../component/OTPModal";
+import { useNavigation } from "@react-navigation/native";
 export default function SignUp(props){
-
+  const navigation = useNavigation();
+  // useEffect(()=>{
+  //   BackHandler.addEventListener(
+  //       'hardwareBackPress',
+  //      ()=> {navigation.goBack();
+  //       return true;
+  //   },
+  //     );
+  // },[])
     const [userName,setUserName] = useState('');
     const [fullName,setFullName] = useState('');
     const [country,setCountry] = useState('');
@@ -19,6 +28,7 @@ export default function SignUp(props){
     const [contactNum,setContactNum] = useState('');
     const [password,setPassword] = useState('');
     const [isSecureEntry,setIsSecureEntry] = useState(true);
+    const [OTPModalVisible,setOTPModalVisible] = useState(true);
     const oneyesPress = ()=>{
         setIsSecureEntry(!isSecureEntry);
     }
@@ -26,9 +36,9 @@ export default function SignUp(props){
     props.navigation.navigate('Login');
   }
   const onSignUpPress =()=>{
-    if(!alphaStringValidation(userName))
-    alert('Please Enter valid UserName');
-    else if(!alphaStringValidation(fullName))
+    // if(!alphaStringValidation(userName))
+    // alert('Please Enter valid UserName');
+     if(!alphaStringValidation(fullName))
     alert('Please Enter Valid Full Name');
     else if(!alphaStringValidation(country))
     alert('Please Enter valid Country');
@@ -37,7 +47,7 @@ export default function SignUp(props){
     else if(!passwordValidation(password))
     alert('Please enter password')
     else
-    alert('Successfully SignUp');
+    props.navigation.navigate('OTP')
   }
 return(
     <Auth>
@@ -57,12 +67,12 @@ return(
                 alignItems:'center',
                 paddingBottom:100
             }}>
-        <CustomTextInput 
+        {/* <CustomTextInput 
         title='Usename' 
         placeholder='UserName' 
         containerStyle={{marginTop:30,
         }}
-        setValue={setUserName}/>
+        setValue={setUserName}/> */}
 
          <CustomTextInput 
          title='Full name' 
@@ -111,19 +121,19 @@ return(
             marginTop:25
         }}>
             <Text style={{
-                color:COLORS.textColor,
-                fontSize: 18
+               ...commonFontStyle(18,200,COLORS.gray2)
             }}>Already have an account? </Text>
             <TouchableOpacity onPress={()=> onLoginPress()}>
             <Text style={{
-                color:COLORS.textColor,
-                fontSize: 18,
-                color:COLORS.primary
-            }}>Log in</Text>
+                ...commonFontStyle(18,300,COLORS.primary)
+            }}>Log In</Text>
             </TouchableOpacity>
            
         </View>
         </View>
+        {/* {
+          OTPModalVisible && <OTPModal/>
+        } */}
         </ScrollView>
     </Auth>
 )

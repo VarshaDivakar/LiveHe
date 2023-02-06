@@ -22,6 +22,10 @@ if linkage != nil
 end
 
 target 'adidas' do
+  # start for Google map
+  # rn_maps_path = '../node_modules/react-native-maps'
+  # pod 'react-native-google-maps', :path => rn_maps_path
+# end
   config = use_native_modules!
 
   # Flags change depending on the env values.

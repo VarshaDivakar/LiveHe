@@ -1,5 +1,5 @@
-import React from "react";
-import {View,Text,StyleSheet,Pressable} from 'react-native';
+import React,{useEffect} from "react";
+import {View,Text,StyleSheet,Pressable,BackHandler} from 'react-native';
 import { styles } from "../styles";
 import Dashboard from "../component/DashBoard";
 import { COLORS, commonFontStyle, height,width } from "../constant/theme";
@@ -7,6 +7,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from "@react-navigation/native";
 export default function Account(){
     const navigation = useNavigation();
+    // useEffect(()=>{
+    //   BackHandler.addEventListener(
+    //       'hardwareBackPress',
+    //      ()=> {navigation.goBack();
+    //       return true;
+    //   },
+    //     );
+    // },[])
     return(
         <Dashboard>
               <View style={[styles.pasteCardcontainer, {
@@ -40,9 +48,9 @@ export default function Account(){
           </View>
 
 
-          <Pressable style={style.LinkView}>
+          {/* <Pressable style={style.LinkView}>
             <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Username</Text>
-          </Pressable>
+          </Pressable> */}
           <Pressable style={style.LinkView}>
             <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Full name</Text>
           </Pressable>
@@ -53,9 +61,9 @@ export default function Account(){
           <Pressable style={style.LinkView}>
             <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>contact Number</Text>
           </Pressable>
-          <Pressable style={style.LinkView}>
+          {/* <Pressable style={style.LinkView}>
             <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Change Password</Text>
-          </Pressable>
+          </Pressable> */}
           <Pressable style={[style.LinkView,{borderBottomWidth:0,}]}>
             <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Country</Text>
           </Pressable>
@@ -66,7 +74,7 @@ export default function Account(){
 const style = StyleSheet.create({
 LinkView:{
     borderBottomColor: COLORS.gray1,
-    borderBottomWidth:0.17,
+    borderBottomWidth:0.2,
     width:'80%',
     alignItems:'center',
     height:60,

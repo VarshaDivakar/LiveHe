@@ -5,6 +5,7 @@ import { COLORS, commonFontStyle, width } from "../constant/theme";
 export default function GradientBox({ leftValue, rightValue,containerStyle }) {
     return (
         <LinearGradient
+            // opacity={1.0}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             colors={['#EA5297', '#B079B7', '#65ADE1', '#47C1F1']}

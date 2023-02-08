@@ -1,5 +1,5 @@
-import React,{useEffect} from "react";
-import { View, Text, Image, StyleSheet, TextInput ,BackHandler} from 'react-native';
+import React, { useEffect } from "react";
+import { View, Text, Image, StyleSheet, ImageBackground, TextInput, BackHandler, KeyboardAvoidingView } from 'react-native';
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import CustomButton from "../component/CustomButton";
 import Dashboard from "../component/DashBoard";
@@ -7,25 +7,18 @@ import { width, COLORS, height, commonFontStyle } from "../constant/theme";
 import { styles } from "../styles";
 import { useNavigation } from "@react-navigation/native";
 export default function ProductDetail() {
-const navigation = useNavigation();
+    const navigation = useNavigation();
     const onPasswordPress = () => [
 
     ]
-    // useEffect(()=>{
-    //     BackHandler.addEventListener(
-    //         'hardwareBackPress',
-    //        ()=> {navigation.goBack();
-    //         return true;
-    //     },
-    //       );
-    //   },[])
     return (<Dashboard number={2} showGift={false} showSetting={false}>
-        <View style={[styles.pasteCardcontainer, {
+        <KeyboardAvoidingView 
+      
+        style={[styles.pasteCardcontainer, {
             height: '85%',
             width: '90%',
             alignItems: 'center',
             paddingVertical: 20,
-            // backgroundColor:COLORS.primary
         }]}>
             <View style={style.logoView}>
                 <Image style={{
@@ -57,17 +50,15 @@ const navigation = useNavigation();
             </View>
             <View style={{
                 alignItems: 'center',
-                // height: height / 4,
-                // marginBottom:25,
-                // borderColor:COLORS.primary,
-                // borderWidth:1,
-                // backgroundColor:COLORS.primary,
-                elevation:5,
-                shadowColor:COLORS.black,
-                shadowOffset:{width:1,height:1},
-                shadowOpacity:0.01,
-                shadowRadius:5
-        
+                borderColor: 'rgba(0, 0, 0, 0.11)',
+                borderWidth: 1,
+                elevation: 5,
+                shadowColor: COLORS.black,
+                shadowOffset: { width: 1, height: 1 },
+                shadowOpacity: 0.01,
+                shadowRadius: 5,
+                // elevation: 5,
+                // width:'85%'
             }}>
                 <Image style={{
                     width: 35, height: 50,
@@ -87,41 +78,56 @@ const navigation = useNavigation();
 
                     <Text style={{
                         ...commonFontStyle(20, 300, COLORS.gray1),
-                        marginTop: 30
+                        marginTop: 25
                     }}>Redeem</Text>
 
-                    <View style={style.password}>
+                    <ImageBackground
+                        style={{
+                            height: 80,
+                            width: 180,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            // ...containerStyle
+                        }}
+                        resizeMode={'contain'}
+                        source={require('../assets/images/buttonBg.png')}>
                         <TextInput placeholder="Password"
                             placeholderTextColor={COLORS.primary}
                             style={{ color: COLORS.primary }} />
-                    </View>
+                    </ImageBackground>
+                    {/* <View style={style.password}>
+                        <TextInput placeholder="Password"
+                            placeholderTextColor={COLORS.primary}
+                            style={{ color: COLORS.primary }} />
+                    </View> */}
                 </View>
             </View>
 
 
-<View style={{
-    width:width/8,
-    height:width/8,
-    backgroundColor:COLORS.white,
-    borderRadius: 50,
-    justifyContent:'center',
-    alignItems:'center',
-    elevation:1,
-    shadowColor:COLORS.black2,
-    shadowOffset:{width:1,height:1},
-    shadowOpacity:0.5,
-    position:'absolute',
-    bottom:15
-    // borderColor:COLORS.gray1,
-    // borderWidth:1,
-    // marginTop:30,
-    
-}}>
-            <Image style={{
-                // marginTop:20
-            }} source={require('../assets/images/locationDirection.png')} />
+            <View style={{
+                width: width / 7,
+                height: width / 7,
+                backgroundColor: COLORS.white,
+                borderRadius: 50,
+                justifyContent: 'center',
+                alignItems: 'center',
+                elevation: 1,
+                shadowColor: COLORS.black2,
+                shadowOffset: { width: 1, height: 1 },
+                shadowOpacity: 0.5,
+                position: 'absolute',
+                bottom: 25,
+                elevation: 10,
+                borderColor: 'rgba(0, 0, 0, 0.11)',
+                borderWidth: 1,
+                // marginTop:30,
+
+            }}>
+                <Image style={{
+                    // marginTop:20
+                }} source={require('../assets/images/locationDirection.png')} />
             </View>
-        </View>
+        </KeyboardAvoidingView>
     </Dashboard>)
 }
 const style = StyleSheet.create({
@@ -141,23 +147,25 @@ const style = StyleSheet.create({
         height: height / 4,
         // backgroundColor:'yellow',
         alignItems: 'center',
-        marginBottom: 10
+        // marginBottom: 10
 
     },
     addressView: {
         backgroundColor: COLORS.white,
-        width: '90%',
+        width: '100%',
         shadowColor: COLORS.gray1,
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.9,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 30
+        paddingHorizontal: 30,
+        paddingTop:30,
+        paddingBottom:20
     },
     password: {
         height: 40,
         width: width / 3,
-        marginTop: 20,
+        // marginTop: 20,
         borderRadius: 10,
         borderBottomWidth: 0.19,
         borderLeftWidth: 0.19,
@@ -168,7 +176,7 @@ const style = StyleSheet.create({
         shadowOffset: { width: 10, height: 2 },
         opacity: 0.9,
         elevation: 50,
-        marginTop: 50,
+        // marginTop: 50,
         backgroundColor: COLORS.white,
 
     }

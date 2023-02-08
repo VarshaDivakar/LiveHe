@@ -9,12 +9,6 @@ import GradientBox from "../component/GradientBox";
 import { useNavigation } from "@react-navigation/native";
 export default function OutOfLives() {
     const navigation = useNavigation();
-    // useEffect(()=>{
-    //     BackHandler.addEventListener(
-    //         'hardwareBackPress',
-    //        ()=> navigation.goBack(),
-    //       );
-    //   },[])
     return (
         <Dashboard number={5}>
             <View  style={[styles.pasteCardcontainer, {
@@ -33,7 +27,7 @@ export default function OutOfLives() {
                     marginTop:30,
                     marginBottom:20
                 }}>Reload options</Text>
-                <Pressable onPress={()=> navigation.navigate('Proceed')}>
+                <Pressable onPress={()=> navigation.navigate('PaymentMethod')}>
                 <GradientBox 
                 leftValue={5} 
                 rightValue={15} 

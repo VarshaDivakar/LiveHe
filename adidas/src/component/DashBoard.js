@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ImageBackground, StyleSheet, SafeAreaView, TextInput, Image, TouchableOpacity, Pressable } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, SafeAreaView, TextInput, Image, TouchableOpacity, Pressable, KeyboardAvoidingView } from 'react-native';
 import PasteBoard from "../component/PasteBoard";
 import { COLORS, commonFontStyle, height, width } from "../constant/theme";
 import { styles } from '../styles';
 import { useNavigation } from "@react-navigation/native";
 import AdidasComponent from "./AdidasComponent";
 import CustomStatusBar from "./CustomStatusBar";
+import MapView,{Marker} from "react-native-maps";
+import Geolocation from '@react-native-community/geolocation';
+
 export default function Dashboard({ number,
     showGift = true,
     showSetting = true,
@@ -16,7 +19,14 @@ export default function Dashboard({ number,
         navigation.navigate('StoreDetail');
     }
     const [numberImg, setNumberImg] = useState()
-
+    const [position, setPosition] = useState({
+        latitude: 0,
+        longitude: 0,
+        latitudeDelta: 0,
+        longitudeDelta: 0,
+       
+      });
+    
     useEffect(() => {
         if (number == 0)
             setNumberImg(require('../assets/images/zero.png'));
@@ -28,13 +38,117 @@ export default function Dashboard({ number,
             setNumberImg(require('../assets/images/six.png'));
         else
             setNumberImg(require('../assets/images/zero.png'));
-    }, [])
-    return (
-        <View style={style.container}>
-            <CustomStatusBar/>
-            <ImageBackground style={style.background} source={require('../assets/images/background.png')}>
+    }, []);
 
-                <SafeAreaView style={style.subContainer}>
+
+    useEffect(() => {
+        const requestLocationPermission = async () => {
+          if (Platform.OS === 'ios') {
+            getOneTimeLocation();
+            subscribeLocationLocation();
+          } else {
+            try {
+              const granted = await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                {
+                  title: 'Location Access Required',
+                  message: 'This App needs to Access your location',
+                },
+              );
+              if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                //To Check, If Permission is granted
+                getOneTimeLocation();
+                subscribeLocationLocation();
+              } else {
+                setLocationStatus('Permission Denied');
+              }
+            } catch (err) {
+              console.warn(err);
+            }
+          }
+        };
+        requestLocationPermission();
+        return () => {
+          Geolocation.clearWatch(watchID);
+        };
+      }, []);
+
+
+
+    const getOneTimeLocation = () => {
+        Geolocation.getCurrentPosition((pos) => {
+          const crd = pos.coords;
+          console.log('location ==>',pos.coords);
+          setPosition({
+            latitude: crd.latitude,
+            longitude: crd.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          });
+        })
+        // .catch((err) => {
+        //   console.log(err);
+        // });
+      };
+
+      const subscribeLocationLocation = () => {
+        watchID = Geolocation.watchPosition(
+          (position) => {
+            //Will give you the location on location change
+            
+            setLocationStatus('You are Here');
+            console.log(position);
+    
+            //getting the Longitude from the location json        
+            const currentLongitude =
+              JSON.stringify(position.coords.longitude);
+    
+            //getting the Latitude from the location json
+            const currentLatitude = 
+              JSON.stringify(position.coords.latitude);
+    
+            //Setting Longitude state
+            setCurrentLongitude(currentLongitude);
+    
+            //Setting Latitude state
+            setCurrentLatitude(currentLatitude);
+          },
+          (error) => {
+            setLocationStatus(error.message);
+          },
+          {
+            enableHighAccuracy: false,
+            maximumAge: 1000
+          },
+        );
+      };
+
+
+    return (
+        <KeyboardAvoidingView  
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
+        enabled={Platform.OS === "ios" ? true : false}
+         style={style.container}>
+            <CustomStatusBar/>
+            <MapView
+          style={{ height:'100%',width:'100%' }}
+          initialRegion={position}
+      showsUserLocation={true}
+      showsMyLocationButton={true}
+      followsUserLocation={true}
+      showsCompass={true}
+      scrollEnabled={true}
+      zoomEnabled={true}
+      pitchEnabled={true}
+      rotateEnabled={true}
+         >
+             <Marker
+       title='Yor are here'
+       description='This is a description'
+       coordinate={position}/>
+         </MapView>
+                <View style={style.subContainer}>
                     <View style={{
                         flexDirection: 'row',
                         justifyContent: 'space-between',
@@ -98,7 +212,9 @@ export default function Dashboard({ number,
                         flexDirection: 'row',
                         justifyContent: 'space-between',
                         width: '90%',
-                        marginBottom: 30
+                        marginBottom: 30,
+                        // position:'absolute',
+                        // bottom:20
                     }}>
                         {showSetting && <Pressable onPress={() => navigation.navigate('Setting')}
                             style={[styles.pasteCardcontainer, {
@@ -127,9 +243,8 @@ export default function Dashboard({ number,
                         }
                     </View>
 
-                </SafeAreaView>
-            </ImageBackground>
-        </View>
+                </View>
+        </KeyboardAvoidingView>
     )
 }
 const style = StyleSheet.create({
@@ -141,7 +256,9 @@ const style = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop:15
+        marginTop:15,
+        position:'absolute',
+        height:'100%'
         // backgroundColor:'yellow'
     },
     background: {

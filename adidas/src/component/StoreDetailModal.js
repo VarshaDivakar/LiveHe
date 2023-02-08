@@ -18,7 +18,7 @@ export default function StoreDetailModal({
                
             }}
             onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
+                alert('Modal has been closed.');
                 onClose();
             }}>
             <View style={style.modalInnerView}>

@@ -19,29 +19,29 @@ export default function Setting(){
                 // alignItems:'center'
             }]}>
           <Pressable style={style.LinkView} onPress={()=> navigation.navigate('Account')}>
-            <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Account</Text>
+            <Text style={{...commonFontStyle(16,400,COLORS.gray1)}}>Account</Text>
           </Pressable>
           <Pressable onPress={()=> navigation.navigate('OutOfLives')}
           style={style.LinkView}>
-            <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Payment Method</Text>
+            <Text style={{...commonFontStyle(16,400,COLORS.gray1)}}>Payment Method</Text>
           </Pressable>
           <Pressable style={style.LinkView}>
-            <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>About</Text>
+            <Text style={{...commonFontStyle(16,400,COLORS.gray1)}}>About</Text>
           </Pressable>
           <Pressable style={style.LinkView}>
-            <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Customer service</Text>
+            <Text style={{...commonFontStyle(16,400,COLORS.gray1)}}>Customer service</Text>
           </Pressable>
           <Pressable style={style.LinkView}>
-            <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Change Password</Text>
+            <Text style={{...commonFontStyle(16,400,COLORS.gray1)}}>Change Password</Text>
           </Pressable>
           <Pressable onPress={()=> Linking.openURL('https://www.google.com/')} style={style.LinkView}>
-            <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Terms and conditions</Text>
+            <Text style={{...commonFontStyle(16,400,COLORS.gray1)}}>Terms and conditions</Text>
           </Pressable>
           <Pressable onPress={()=>  Linking.openURL('https://www.google.com/')} style={style.LinkView}>
-            <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Privacy and policy</Text>
+            <Text style={{...commonFontStyle(16,400,COLORS.gray1)}}>Privacy and policy</Text>
           </Pressable>
           <Pressable onPress={()=> navigation.navigate('Login')} style={[style.LinkView,{borderBottomWidth:0,}]}>
-            <Text style={{...commonFontStyle(16,300,COLORS.red)}}>Log out</Text>
+            <Text style={{...commonFontStyle(16,400,COLORS.red)}}>Log out</Text>
           </Pressable>
             </View>
         </Dashboard>

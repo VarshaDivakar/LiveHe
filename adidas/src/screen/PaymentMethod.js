@@ -11,16 +11,9 @@ import PaymentMethodComponent from "../component/PaymentMethodComponent";
 export default function PaymentMethod() {
 
     const navigation = useNavigation();
-    // useEffect(()=>{
-    //     BackHandler.addEventListener(
-    //         'hardwareBackPress',
-    //        ()=> {navigation.goBack();
-    //         return true;
-    //     },
-    //       );
-    //   },[])
+    
     return (
-        <Dashboard>
+        <Dashboard >
             <View style={[styles.pasteCardcontainer, {
                 height: '78%',
                 width: '90%',

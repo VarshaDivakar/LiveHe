@@ -17,16 +17,16 @@ export default function Splash(props){
     return(
         <View style={style.container}>
             <CustomStatusBar/>
-        {/* <ImageBackground style={style.background} source={require('../assets/images/background.png')}> */}
-<MapView
-          style={{ height:'500',width:'500 ' }}
+        <ImageBackground style={style.background} source={require('../assets/images/background.png')}>
+{/* <MapView
+          style={{ height:500,width:500 }}
           initialRegion={{
             latitude: 37.78825,
             longitude: -122.4324,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421
-          }}></MapView> 
-          {/* <View style={{
+          }}></MapView>  */}
+          <View style={{
             backgroundColor:'white',
             height:height,
             width:width,
@@ -37,8 +37,8 @@ export default function Splash(props){
             paddingBottom:20
             }}>
           <Image style={style.logo} resizeMode={'contain'} source={require('../assets/images/Lhive_Logo.png')}/>
-            </View>  */}
-        {/* </ImageBackground> */}
+            </View> 
+        </ImageBackground>
         </View>
     )
 }

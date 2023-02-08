@@ -42,7 +42,7 @@ export default function Account(){
           <Icon name='arrow-back-ios' size={20} color={COLORS.primary}/>
           </Pressable>
             <Text style={{
-                ...commonFontStyle(16,300,COLORS.gray1),
+                ...commonFontStyle(16,400,COLORS.gray1),
                 
                 }}>Account</Text>
           </View>
@@ -52,20 +52,20 @@ export default function Account(){
             <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Username</Text>
           </Pressable> */}
           <Pressable style={style.LinkView}>
-            <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Full name</Text>
+            <Text style={{...commonFontStyle(16,400,COLORS.gray1)}}>Full name</Text>
           </Pressable>
           <Pressable style={style.LinkView}>
-            <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Email</Text>
+            <Text style={{...commonFontStyle(16,400,COLORS.gray1)}}>Email</Text>
           </Pressable>
 
           <Pressable style={style.LinkView}>
-            <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>contact Number</Text>
+            <Text style={{...commonFontStyle(16,400,COLORS.gray1)}}>contact Number</Text>
           </Pressable>
           {/* <Pressable style={style.LinkView}>
             <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Change Password</Text>
           </Pressable> */}
           <Pressable style={[style.LinkView,{borderBottomWidth:0,}]}>
-            <Text style={{...commonFontStyle(16,300,COLORS.gray1)}}>Country</Text>
+            <Text style={{...commonFontStyle(16,400,COLORS.gray1)}}>Country</Text>
           </Pressable>
             </View>
         </Dashboard>

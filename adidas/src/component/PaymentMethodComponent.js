@@ -53,8 +53,8 @@ export default function PaymentMethodComponent() {
          <CustomButton
             onPress={onProceedPress}
             containerStyle={{
-               marginTop: 20,
-               marginBottom: 30
+               marginTop: 0,
+               // marginBottom: 30
 
             }}
             title={'Proceed'} />
@@ -65,7 +65,7 @@ export default function PaymentMethodComponent() {
          }}>Add Payment method</Text>
 
          <Pressable style={style.pressable}>
-            <Image source={require('../assets/images/Visa.png')} />
+            <Image  style={style.pressableImage} source={require('../assets/images/Visa.png')} />
          </Pressable>
 
          <Pressable onPress={() => navigation.navigate('CardDetail')}

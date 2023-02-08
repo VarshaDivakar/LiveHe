@@ -5,32 +5,8 @@ import { COLORS } from "../constant/theme";
 
 export default function CustomButton({title,onPress,containerStyle}){
 return(
-    // <View style={{
-    //     height:40,
-    //     width:width/3,
-    //     // marginTop:20,
-    //         borderRadius:10,
-    //         borderBottomWidth:0.19,
-    //         borderLeftWidth:0.19,
-    //         borderRightWidth:0.19,
-    //     // justifyContent:'center',
-    //     // alignItems:'center',
-    //     shadowColor:COLORS.primary,
-    //     shadowOffset:{width:10,height:20},
-    //     opacity:0.9,
-    //     // shadowRadius:10,
-    //     // // elevation:50,
-    //     // marginTop:50,
-    //     backgroundColor:COLORS.white,
-    //     ...containerStyle
-    // }}>
     <TouchableOpacity style={{
-        //  height:90,
-        //  width:width/3,
-        //  justifyContent:'center',
-        //  alignItems:'center',
          marginTop:50,
-        
     }}
     onPress={()=>onPress()}
     >
